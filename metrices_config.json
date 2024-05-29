@@ -1,0 +1,20 @@
+{
+    "metrics": {
+        "qs_relevance": false,
+        "harmfulness": false,
+        "qa_relevance": false,
+        "helpfulness": false,
+        "groundedness": false,
+        "insensitivity": false,
+        "coherence": false,
+        "maliciousness": false,
+        "summarization": false,
+        "misogyny": false,
+        "conciseness": false,
+        "sentiment": false,
+        "controversiality": false,
+        "stereotype": false,
+        "criminality": false,
+        "correctness": false
+    }
+}
