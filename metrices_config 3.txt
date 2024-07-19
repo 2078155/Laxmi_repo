@@ -1,0 +1,735 @@
+[
+  {
+    "name": "Data Quality",
+    "metrices": [
+      {
+        "name": "Data Uniformity rate",
+        "description": "Ensure data is consistent across different sources without any contradictions",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Bias Score",
+        "description": "Checks if the training data more biased towards any specific age, gender.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Schema conformance score",
+        "description": "Evaluates if the data is available in defined formats as per business rules",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Data Completeness ratio",
+        "description": "Checks for Comprehensive coverage on data",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Data Sensitivity",
+        "description": "Detection of PII sensitive information in training dataset",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      }
+    ]
+  },
+  {
+    "name": "Model Quality",
+    "metrices": [
+      {
+        "name": "Language Match Score",
+        "description": "Grades the language match of the response to the input",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "QA Relevance",
+        "description": "Grades how relevant the response was to the question specified.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "QC Relevance",
+        "description": "Grades how relevant the response was to the context extracted.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Hallucination Degree coefficient",
+        "description": "Detects hallucination on 'n' attempts, based on the degree on variance of responses for the same prompt",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Coherence",
+        "description": "Detects if the response is well-organized and easy to follow and could benefit from the context",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Summarization",
+        "description": "Evaluates the response summary, if it has captured all the key points of high importance level from the source text.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Concisenses",
+        "description": "Evaluates if the submission is very concise and to the point",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Controversiality",
+        "description": "Checks if the response holds a Neutral tone, avoiding opinions likely to spark heated debate.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": true,
+        "status": true
+      },
+      {
+        "name": "Correctness/Factuality",
+        "description": "Detects how correct/factual the response is provided for the question asked",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Groundedness",
+        "description": "A measure to track if the source material supports each sentence in the statement.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Ground Truth Relevance",
+        "description": "Compares the actual response against the dataset and derives a score based on similarity.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Sentiment",
+        "description": "Evaluates the response for any sentiment or emotion expressed in a piece of text",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Insensitivity",
+        "description": "Does the response hold any sensitive information",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": true,
+        "status": true
+      },
+      {
+        "name": "Stereotype",
+        "description": "It evaluates gender bias and stereotype between male and female, and gender minority bias and stereotype between majority and minority",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": true,
+        "status": true
+      },
+      {
+        "name": "Maliciousness",
+        "description": "Checks if the response is meant to deceive or spread negativity?",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": true,
+        "status": true
+      },
+      {
+        "name": "Tone Critique",
+        "description": "Checks the tone of the response",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Chaining of Prompts",
+        "description": "Cross evaluation performed on LLM to gather the reasoning behind the response",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Fluency",
+        "description": "Rates the readability of the response summary",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Source Authenticity Score",
+        "description": "To verify the source of the data, metadata",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Data Evolution Index",
+        "description": "Track changes applied to data and cross check the sample response being generated for the same question over a period of time and alert",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Profanity",
+        "description": "Ensures the responses are free from spelling mistakes, maintaining professional and clear communication.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Cosine Similarity",
+        "description": "Check for Cosine similarity between two sentences",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": false,
+        "status": true
+      },
+     {
+        "name": "BLEU",
+        "description": "Measures the accuracy of the chatbot's responses by comparing them to reference responses using n-gram precision.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": false,
+        "status": true
+      },
+        {
+        "name": "ROUGE",
+        "description": "Evaluates the quality of the chatbot's responses by comparing them to reference responses using recall-based measures.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": false,
+        "status": true
+      },
+        {
+        "name": "METEOR",
+        "description": "Assesses the chatbot's responses based on precision, recall, and alignment with human judgment, considering synonyms and stemming.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "F1 Score",
+        "description":"Balances precision and recall to measure the overall accuracy of the chatbot's responses.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Is Unethical",
+        "description": "Filters and highlights contents that are Unethical",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      }
+    ]
+  },
+  {
+    "name": "Trustworthy Assurance",
+    "metrices": [
+      {
+        "name": "PII detection",
+        "description": "Would detect any PII data being exposed in O/P generated",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": true,
+        "status": true
+      },
+      {
+        "name": "Jailbreak",
+        "description": "Simulate attacks to measure the sensitivity of LLMs",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Adversarial attack",
+        "description": "Simulate attacks to measure the sensitivity of LLMs",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Red Team Component",
+        "description": "Simulate attacks to measure the sensitivity of LLMs",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Load resilience score",
+        "description": "Feed high load scenarois and test systems reliability and performance",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Ethical Compliance Rate",
+        "description": "Generate adverse prompts to ethical guidelines and observe how LLM performs",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Toxicity",
+        "description": "Detects any patterns of Insult ,obscenity ,threat & dangerous in the O/P and logs it for further analysis",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Log Integrity Index",
+        "description": "Parse logs to see if there is any pattern of unethical data",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Criminality",
+        "description": "Check if the response glorifies illegal activities?",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": true,
+        "status": true
+      },
+      {
+        "name": "Misogyny",
+        "description": "Checks if there are any discriminatory language or offensive remarks targeting women or female characters.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": true,
+        "status": true
+      },
+      {
+        "name": "Harm Score",
+        "description": "Evaluates if there is any usage of harmful language or misinformation?",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": true,
+        "status": true
+      }
+    ]
+  },
+  {
+    "name": "Summary Evaluation specific Assurance",
+    "metrices": [
+      {
+        "name": "QAG Hallucination Score",
+        "description": "This metric captures the percentage of questions that received a Yes/No summary-based answer and an Unknown document-based answer. A high score suggests the summary might include content absent from the original document.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "QAG Contradiction Score",
+        "description": "This metric captures the percentage of questions that received a Yes summary-based answer and a No document-based answer, and vice-versa. A high score suggests the summary might include content that contradicts the original document.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "QAG Non-informativeness Score",
+        "description": "This metric captures the percentage of questions that received a Unknown summary-based answer and an Yes/No document-based answer. A high score indicates that the summary may miss details from the document or be very generic.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Contextual Recall",
+        "description": "Measures the accuracy of the context information retrieved",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Contextual Precision",
+        "description": "Measures the completeness of the context retrieved",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Answer Relevancy",
+        "description": "Evaluates if the response includes only important information and excludes redundancies.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Fluency",
+        "description": "Rates the readability of the summary",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Faithfulness",
+        "description": "A measure to track if the source material supports each sentence in the statement",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Instruction Handling Check",
+        "description": "Cross checking the response against the instructions provided as part of prompt.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Entity Check",
+        "description": "Provides a score based on the overlap of entities between the response and the context.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": false,
+        "status": true
+      }
+    ]
+  },
+  {
+    "name": "BDD Use case specific Assurance",
+    "metrices": [
+      {
+        "name": "Gherkin checks",
+        "description": "Framework based Gherkin standards check",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Coverage Adherence",
+        "description": "Usecase to feature file adherence check",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Guideline Adherence",
+        "description": "Gherkin standards rule adherence checks",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Readability",
+        "description": "Assessing the natural flow and readability of text generated by the LLM",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Grammar",
+        "description": "Grades the quality of the response based on grammar checks",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Spell",
+        "description": "Grades the quality of the response based on spell checks",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": false,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Groundedness",
+        "description": "A measure to track if the source material supports each sentence in the statement.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Fluency",
+        "description": "Rates the readability of the response summary",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Instruction Handling Check",
+        "description": "Cross checking the response against the instructions provided as part of prompt",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      }
+    ]
+  },
+  {
+    "name": "Custom Metrices",
+    "metrices": [
+      {
+        "name": "Coverage",
+        "description": "There are various competencies that can be tracked from JD like Tools Frameworks, Software, Knowledge Qualification,Responsibilities,Experience Required, Certifications Education Needed, Soft Skills etc. This metric calculates the coverage of these aspects and provides a score along with the missed competencies",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Factuality",
+        "description": "Evaluates if there are facts present in the context for the response generated",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Duplicate",
+        "description": "Evaluates the Output generated has duplicate similar sounding questions",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Coherence",
+        "description": "Evaluates the Output question sub questions are being logically sequenced",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Bias",
+        "description": "Evaluates the questions to highlight if the questions weightage are more aligned to specific skillset",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+       {
+        "name": "Fluency",
+        "description": "Evaluates the naturalness, coherence, and grammatical accuracy of the responses to ensure they resemble human conversation.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Relevance Check (JD Context & Question)",
+        "description": "This metrics evaluates the relevance between the Context referred from JD and the response being generated",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Relevance Check (Competency & Question)",
+        "description": "There are 3 questions being generated for each competency and this metrics evaluates if the response being generated is aligned with its respective competencies",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Relevance Check (JD Competency & Question)",
+        "description": "There are 3 questions being generated for each competency and this metrics evaluates if the response being generated is aligned with its respective competencies provided in the JD",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Skill weightage check",
+        "description": "This metrics evaluates if the questions generated are more biased towards specific Competency / Skill",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Skill contradiction check",
+        "description": "Checks if the skillsets generated in the question are in alignment to the skills mentioned in JD. For e.g. JD is on Python developer and in questions generated it will check if all skills mentioned are aligned to python and no contradictory skills are present",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Pattern repeat check",
+        "description": "Evaluates the patterns of question generated for e.g ,8 question start with Tell us why",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "grammar-score",
+        "description": "Ensures the responses are free from grammatical errors, maintaining professional and clear communication.",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "spelling-score",
+        "description": "Ensures the chatbot's responses are free from spelling mistakes.",  
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+    
+      {
+        "name": "Direct Indirect speech check",
+        "description": "Evaluates if the Output generated are directly addressed or indirectly addressed",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      },
+      {
+        "name": "Hallucination",
+        "description": "Evaluates the Output questions generated are hallucinated",
+        "enabled": false,
+        "thresholdValue": 0.5,
+        "Is LLM": true,
+        "inverse": false,
+        "status": true
+      }
+    ]
+  }
+]
