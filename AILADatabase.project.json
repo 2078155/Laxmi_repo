@@ -1,0 +1,904 @@
+[{
+  "_id": {
+    "$oid": "665454af4a8833593960f5f2"
+  },
+  "projectName": "adminproject",
+  "projectDesc": "This project is for admin person.",
+  "created": {
+    "$date": "2024-05-27T09:38:55.857Z"
+  },
+  "modified": {
+    "$date": "2024-05-27T09:38:55.857Z"
+  },
+  "_class": "com.cts.aila.model.Project"
+},
+{
+  "_id": {
+    "$oid": "6656beec57dba267f5a4379a"
+  },
+  "projectName": "Conversational_AI_LUIS",
+  "projectDesc": "LUIS project",
+  "created": {
+    "$date": "2024-05-29T05:36:43.646Z"
+  },
+  "modified": {
+    "$date": "2024-05-29T05:36:43.646Z"
+  },
+  "modelCategory": "Conversational AI",
+  "modelCategorySubType": "LUIS",
+  "azureSubscriptionKey": "AMreIMhz3DSJdwY96jyX9OhuUcO1+2R17shHlbJE+mtz2IdPU1LTo49EpBdZMDwx",
+  "azureRegion": "eastus",
+  "gcpDataFile": "C:\\AILA_ENV\\Speech_Env\\Conversational_AI_LUIS\\key.json",
+  "languageTranslationKey": "",
+  "languageTranslationEndpoint": "",
+  "languageTranslationRegion": "",
+  "awsSecretKey": "zx5T5ssiFrkoNr2+oAMPw1GjI51kCyXLeN5xanfNOohH1jDnp3QcHaaxL3UiKmX/",
+  "awsAccessKey": "7n/e9ueQCdMC44hqoQkWbolTK9VRb0TsqYmO3Zspm+w=",
+  "awsRegion": "us-east-1",
+  "userTypeProject": "devProject",
+  "_class": "com.cts.aila.model.Project"
+},
+{
+  "_id": {
+    "$oid": "6656c07357dba267f5a4379f"
+  },
+  "projectName": "Conversational_AI_CLU",
+  "projectDesc": "CLU Project",
+  "created": {
+    "$date": "2024-05-29T05:43:15.305Z"
+  },
+  "modified": {
+    "$date": "2024-05-29T05:43:15.305Z"
+  },
+  "modelCategory": "Conversational AI",
+  "modelCategorySubType": "CLU",
+  "azureSubscriptionKey": "AMreIMhz3DSJdwY96jyX9OhuUcO1+2R17shHlbJE+mtz2IdPU1LTo49EpBdZMDwx",
+  "azureRegion": "eastus",
+  "gcpDataFile": "",
+  "languageTranslationKey": "",
+  "languageTranslationEndpoint": "",
+  "languageTranslationRegion": "",
+  "awsSecretKey": "",
+  "awsAccessKey": "",
+  "awsRegion": "",
+  "userTypeProject": "devProject",
+  "_class": "com.cts.aila.model.Project"
+},
+{
+  "_id": {
+    "$oid": "6656c1a057dba267f5a437a4"
+  },
+  "projectName": "Movie_Recommendation",
+  "projectDesc": "Recommendation",
+  "created": {
+    "$date": "2024-05-29T05:48:16.290Z"
+  },
+  "modified": {
+    "$date": "2024-05-29T05:48:16.290Z"
+  },
+  "modelCategory": "Recommendation",
+  "metaDataList": [
+    {
+      "type": "Input Feature",
+      "name": "userId",
+      "dataType": "Index",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "movieId",
+      "dataType": "Index",
+      "description": ""
+    },
+    {
+      "type": "Output Label",
+      "name": "rating",
+      "dataType": "Index",
+      "description": ""
+    }
+  ],
+  "userTypeProject": "devProject",
+  "_class": "com.cts.aila.model.Project"
+},
+{
+  "_id": {
+    "$oid": "6656c56557dba267f5a437aa"
+  },
+  "projectName": "Healthcare_DT",
+  "projectDesc": "Classification_project",
+  "created": {
+    "$date": "2024-05-29T06:04:21.068Z"
+  },
+  "modified": {
+    "$date": "2024-05-29T06:04:21.068Z"
+  },
+  "modelCategory": "Classification",
+  "metaDataList": [
+    {
+      "type": "Input Feature",
+      "name": "age",
+      "dataType": "Numeric",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "sex",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "bmi",
+      "dataType": "Numeric",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "steps",
+      "dataType": "Numeric",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "children",
+      "dataType": "Numeric",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "smoker",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "region",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "charges",
+      "dataType": "Numeric",
+      "description": ""
+    },
+    {
+      "type": "Output Label",
+      "name": "claim",
+      "dataType": "Categorical",
+      "description": ""
+    }
+  ],
+  "userTypeProject": "devProject",
+  "_class": "com.cts.aila.model.Project"
+},
+{
+  "_id": {
+    "$oid": "6656c60857dba267f5a437ab"
+  },
+  "projectName": "Alaska_Airlines",
+  "projectDesc": "Regression_project",
+  "created": {
+    "$date": "2024-05-29T06:07:04.826Z"
+  },
+  "modified": {
+    "$date": "2024-05-29T06:07:04.826Z"
+  },
+  "modelCategory": "Regression",
+  "metaDataList": [
+    {
+      "type": "Input Feature",
+      "name": "class",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "class_strength",
+      "dataType": "Numeric",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "boeing",
+      "dataType": "Numeric",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "airbus",
+      "dataType": "Numeric",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "hrs_per_stdnt",
+      "dataType": "Numeric",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "base",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_AED-Heartsine",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_Arm",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_ASPSU",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_Close",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_CompleteCBT",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_CPR",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_Decompression",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_Disarm",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_DualChamber",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_EmergencyEvacuation(Ditching)",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_EmergencyEvacuation(Land)",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_Exam",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_FullFaceMask",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_INSTALLCANOPY",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_MaskwSmokeGoggles",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_Open",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_Operation",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_PredepartureCheck",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_Preflight",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_PreflightAS",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_PreflightBG",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_PreflightandPredepartureCheckDrill",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_SecurityCritiqueandQuiz",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_SingleChamber",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_Unbracket-Bracket",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_Unbracket-Operation",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Input Feature",
+      "name": "c_Unbracket-Operation-Bracket",
+      "dataType": "Categorical",
+      "description": ""
+    },
+    {
+      "type": "Output Label",
+      "name": "outcome",
+      "dataType": "Numeric",
+      "description": ""
+    }
+  ],
+  "userTypeProject": "devProject",
+  "_class": "com.cts.aila.model.Project"
+},
+{
+  "_id": {
+    "$oid": "6656c68757dba267f5a437ac"
+  },
+  "projectName": "Traffic_Image_classification",
+  "projectDesc": "Image classification",
+  "created": {
+    "$date": "2024-05-29T06:09:11.419Z"
+  },
+  "modified": {
+    "$date": "2024-05-29T06:09:11.419Z"
+  },
+  "modelCategory": "Image Classification",
+  "metaDataList": [
+    {
+      "type": "0",
+      "name": "Speed limit (20km/h)",
+      "dataType": "",
+      "description": "Sign to Classify Speed limit (20km/h)"
+    },
+    {
+      "type": "1",
+      "name": "Speed limit (30km/h)",
+      "dataType": "",
+      "description": "Sign to Classify Speed limit (30km/h)"
+    },
+    {
+      "type": "2",
+      "name": "Speed limit (50km/h)",
+      "dataType": "",
+      "description": "Sign to Classify Speed limit (50km/h)"
+    },
+    {
+      "type": "3",
+      "name": "Speed limit (60km/h)",
+      "dataType": "",
+      "description": "Sign to Classify Speed limit (60km/h)"
+    },
+    {
+      "type": "4",
+      "name": "Speed limit (70km/h)",
+      "dataType": "",
+      "description": "Sign to Classify Speed limit (70km/h)"
+    },
+    {
+      "type": "5",
+      "name": "Speed limit (80km/h)",
+      "dataType": "",
+      "description": "Sign to Classify Speed limit (80km/h)"
+    },
+    {
+      "type": "6",
+      "name": "End of speed limit (80km/h)",
+      "dataType": "",
+      "description": "Sign to Classify End of speed limit (80km/h)"
+    },
+    {
+      "type": "7",
+      "name": "Speed limit (100km/h)",
+      "dataType": "",
+      "description": "Sign to Classify Speed limit (100km/h)"
+    },
+    {
+      "type": "8",
+      "name": "Speed limit (120km/h)",
+      "dataType": "",
+      "description": "Sign to Classify Speed limit (120km/h)"
+    },
+    {
+      "type": "9",
+      "name": "No passing",
+      "dataType": "",
+      "description": "Sign to Classify No passing"
+    },
+    {
+      "type": "10",
+      "name": "No passing for vechiles over 3.5 metric tons",
+      "dataType": "",
+      "description": "Sign to Classify No passing for vechiles over 3.5 metric tons"
+    },
+    {
+      "type": "11",
+      "name": "Right-of-way at the next intersection",
+      "dataType": "",
+      "description": "Sign to Classify Right-of-way at the next intersection"
+    },
+    {
+      "type": "12",
+      "name": "Priority road",
+      "dataType": "",
+      "description": "Sign to Classify Priority road"
+    },
+    {
+      "type": "13",
+      "name": "Yield",
+      "dataType": "",
+      "description": "Sign to Classify Yield"
+    },
+    {
+      "type": "14",
+      "name": "Stop",
+      "dataType": "",
+      "description": "Sign to Classify Stop"
+    },
+    {
+      "type": "15",
+      "name": "No vechiles",
+      "dataType": "",
+      "description": "Sign to Classify No vechiles"
+    },
+    {
+      "type": "16",
+      "name": "Vechiles over 3.5 metric tons prohibited",
+      "dataType": "",
+      "description": "Sign to Classify Vechiles over 3.5 metric tons prohibited"
+    },
+    {
+      "type": "17",
+      "name": "No entry",
+      "dataType": "",
+      "description": "Sign to Classify No entry"
+    },
+    {
+      "type": "18",
+      "name": "General caution",
+      "dataType": "",
+      "description": "Sign to Classify General caution"
+    },
+    {
+      "type": "19",
+      "name": "Dangerous curve to the left",
+      "dataType": "",
+      "description": "Sign to Classify Dangerous curve to the left"
+    },
+    {
+      "type": "20",
+      "name": "Dangerous curve to the right",
+      "dataType": "",
+      "description": "Sign to Classify Dangerous curve to the right"
+    },
+    {
+      "type": "21",
+      "name": "Double curve",
+      "dataType": "",
+      "description": "Sign to Classify Double curve"
+    },
+    {
+      "type": "22",
+      "name": "Bumpy road",
+      "dataType": "",
+      "description": "Sign to Classify Bumpy road"
+    },
+    {
+      "type": "23",
+      "name": "Slippery road",
+      "dataType": "",
+      "description": "Sign to Classify Slippery road"
+    },
+    {
+      "type": "24",
+      "name": "Road narrows on the right",
+      "dataType": "",
+      "description": "Sign to Classify Road narrows on the right"
+    },
+    {
+      "type": "25",
+      "name": "Road work",
+      "dataType": "",
+      "description": "Sign to Classify Road work"
+    },
+    {
+      "type": "26",
+      "name": "Traffic signals",
+      "dataType": "",
+      "description": "Sign to Classify Traffic signals"
+    },
+    {
+      "type": "27",
+      "name": "Pedestrians",
+      "dataType": "",
+      "description": "Sign to Classify Pedestrians"
+    },
+    {
+      "type": "28",
+      "name": "Children crossing",
+      "dataType": "",
+      "description": "Sign to Classify Children crossing"
+    },
+    {
+      "type": "29",
+      "name": "Bicycles crossing",
+      "dataType": "",
+      "description": "Sign to Classify Bicycles crossing"
+    },
+    {
+      "type": "30",
+      "name": "Beware of ice/snow",
+      "dataType": "",
+      "description": "Sign to Classify Beware of ice/snow"
+    },
+    {
+      "type": "31",
+      "name": "Wild animals crossing",
+      "dataType": "",
+      "description": "Sign to Classify Wild animals crossing"
+    },
+    {
+      "type": "32",
+      "name": "End of all speed and passing limits",
+      "dataType": "",
+      "description": "Sign to Classify End of all speed and passing limits"
+    },
+    {
+      "type": "33",
+      "name": "Turn right ahead",
+      "dataType": "",
+      "description": "Sign to Classify Turn right ahead"
+    },
+    {
+      "type": "34",
+      "name": "Turn left ahead",
+      "dataType": "",
+      "description": "Sign to Classify Turn left ahead"
+    },
+    {
+      "type": "35",
+      "name": "Ahead only",
+      "dataType": "",
+      "description": "Sign to Classify Ahead only"
+    },
+    {
+      "type": "36",
+      "name": "Go straight or right",
+      "dataType": "",
+      "description": "Sign to Classify Go straight or right"
+    },
+    {
+      "type": "37",
+      "name": "Go straight or left",
+      "dataType": "",
+      "description": "Sign to Classify Go straight or left"
+    },
+    {
+      "type": "38",
+      "name": "Keep right",
+      "dataType": "",
+      "description": "Sign to Classify Keep right"
+    },
+    {
+      "type": "39",
+      "name": "Keep left",
+      "dataType": "",
+      "description": "Sign to Classify Keep left"
+    },
+    {
+      "type": "40",
+      "name": "Roundabout mandatory",
+      "dataType": "",
+      "description": "Sign to Classify Roundabout mandatory"
+    },
+    {
+      "type": "41",
+      "name": "End of no passing",
+      "dataType": "",
+      "description": "Sign to Classify End of no passing"
+    },
+    {
+      "type": "42",
+      "name": "End of no passing by vechiles over 3.5 metric tons",
+      "dataType": "",
+      "description": "Sign to Classify End of no passing by vechiles over 3.5 metric tons"
+    }
+  ],
+  "userTypeProject": "devProject",
+  "_class": "com.cts.aila.model.Project"
+},
+{
+  "_id": {
+    "$oid": "6656c7d557dba267f5a437ad"
+  },
+  "projectName": "House_pricing",
+  "projectDesc": "Regression_project",
+  "created": {
+    "$date": "2024-05-29T06:14:45.120Z"
+  },
+  "modified": {
+    "$date": "2024-05-29T06:14:45.120Z"
+  },
+  "modelCategory": "Regression",
+  "metaDataList": [
+    {
+      "type": "Input Feature",
+      "name": "LotArea",
+      "dataType": "Numeric",
+      "description": "LotArea"
+    },
+    {
+      "type": "Input Feature",
+      "name": "Street",
+      "dataType": "Categorical",
+      "description": "Street"
+    },
+    {
+      "type": "Input Feature",
+      "name": "Neighborhood",
+      "dataType": "Categorical",
+      "description": "Neighborhood"
+    },
+    {
+      "type": "Input Feature",
+      "name": "Condition1",
+      "dataType": "Categorical",
+      "description": "Condition1"
+    },
+    {
+      "type": "Input Feature",
+      "name": "Condition2",
+      "dataType": "Categorical",
+      "description": "Condition2"
+    },
+    {
+      "type": "Input Feature",
+      "name": "BldgType",
+      "dataType": "Categorical",
+      "description": "BldgType"
+    },
+    {
+      "type": "Input Feature",
+      "name": "HouseStyle",
+      "dataType": "Categorical",
+      "description": "HouseStyle"
+    },
+    {
+      "type": "Input Feature",
+      "name": "OverallCond",
+      "dataType": "Numeric",
+      "description": "OverallCond"
+    },
+    {
+      "type": "Input Feature",
+      "name": "Heating",
+      "dataType": "Categorical",
+      "description": "Heating"
+    },
+    {
+      "type": "Input Feature",
+      "name": "CentralAir",
+      "dataType": "Categorical",
+      "description": "CentralAir"
+    },
+    {
+      "type": "Input Feature",
+      "name": "Electrical",
+      "dataType": "Categorical",
+      "description": "Electrical"
+    },
+    {
+      "type": "Input Feature",
+      "name": "1stFlrSF",
+      "dataType": "Numeric",
+      "description": "1stFlrSF"
+    },
+    {
+      "type": "Input Feature",
+      "name": "2ndFlrSF",
+      "dataType": "Numeric",
+      "description": "2ndFlrSF"
+    },
+    {
+      "type": "Input Feature",
+      "name": "BsmtHalfBath",
+      "dataType": "Numeric",
+      "description": "BsmtHalfBath"
+    },
+    {
+      "type": "Input Feature",
+      "name": "FullBath",
+      "dataType": "Numeric",
+      "description": "FullBath"
+    },
+    {
+      "type": "Input Feature",
+      "name": "BedroomAbvGr",
+      "dataType": "Numeric",
+      "description": "BedroomAbvGr"
+    },
+    {
+      "type": "Input Feature",
+      "name": "KitchenAbvGr",
+      "dataType": "Numeric",
+      "description": "KitchenAbvGr"
+    },
+    {
+      "type": "Input Feature",
+      "name": "TotRmsAbvGrd",
+      "dataType": "Numeric",
+      "description": "TotRmsAbvGrd"
+    },
+    {
+      "type": "Input Feature",
+      "name": "GarageCars",
+      "dataType": "Numeric",
+      "description": "GarageCars"
+    },
+    {
+      "type": "Input Feature",
+      "name": "GarageArea",
+      "dataType": "Numeric",
+      "description": "GarageArea"
+    },
+    {
+      "type": "Input Feature",
+      "name": "PoolArea",
+      "dataType": "Categorical",
+      "description": "PoolArea"
+    },
+    {
+      "type": "Output Label",
+      "name": "SalePrice",
+      "dataType": "Numeric",
+      "description": "SalePrice"
+    }
+  ],
+  "userTypeProject": "devProject",
+  "_class": "com.cts.aila.model.Project"
+},
+{
+  "_id": {
+    "$oid": "6656c81e57dba267f5a437ae"
+  },
+  "projectName": "GENAI",
+  "projectDesc": "",
+  "created": {
+    "$date": "2024-05-29T06:15:58.647Z"
+  },
+  "modified": {
+    "$date": "2024-05-29T06:15:58.647Z"
+  },
+  "modelCategory": "Gen AI Assurance",
+  "userTypeProject": "devProject",
+  "_class": "com.cts.aila.model.Project"
+},
+{
+  "_id": {
+    "$oid": "6656cfc157dba267f5a437ce"
+  },
+  "projectName": "Financial_AI_LEX-Bot",
+  "projectDesc": "",
+  "created": {
+    "$date": "2024-05-29T06:48:33.783Z"
+  },
+  "modified": {
+    "$date": "2024-05-29T06:48:33.783Z"
+  },
+  "modelCategory": "Conversational AI",
+  "modelCategorySubType": "LEX",
+  "azureSubscriptionKey": "AMreIMhz3DSJdwY96jyX9OhuUcO1+2R17shHlbJE+mtz2IdPU1LTo49EpBdZMDwx",
+  "azureRegion": "eastus",
+  "gcpDataFile": "",
+  "languageTranslationKey": "",
+  "languageTranslationEndpoint": "",
+  "languageTranslationRegion": "",
+  "awsSecretKey": "zx5T5ssiFrkoNr2+oAMPw1GjI51kCyXLeN5xanfNOohH1jDnp3QcHaaxL3UiKmX/",
+  "awsAccessKey": "7n/e9ueQCdMC44hqoQkWbolTK9VRb0TsqYmO3Zspm+w=",
+  "awsRegion": "us-east-1",
+  "userTypeProject": "devProject",
+  "_class": "com.cts.aila.model.Project"
+},
+{
+  "_id": {
+    "$oid": "66696f32f8778b3e6cbef633"
+  },
+  "projectName": "KM_BOT",
+  "projectDesc": "To evaluate if the interview questions generated are accurate",
+  "created": {
+    "$date": "2024-06-12T09:49:38.869Z"
+  },
+  "modified": {
+    "$date": "2024-06-12T09:52:35.369Z"
+  },
+  "modelCategory": "Gen AI Assurance",
+  "metaDataList": [
+    {
+      "type": "",
+      "name": "",
+      "dataType": "",
+      "description": ""
+    }
+  ],
+  "userTypeProject": "devProject",
+  "_class": "com.cts.aila.model.Project"
+},
+{
+  "_id": {
+    "$oid": "66696f95f8778b3e6cbef634"
+  },
+  "projectName": "JD_QUESTIONNAIRE",
+  "projectDesc": "To evaluate if the interview questions generated are accurate",
+  "created": {
+    "$date": "2024-06-12T09:51:17.038Z"
+  },
+  "modified": {
+    "$date": "2024-06-12T09:51:17.038Z"
+  },
+  "modelCategory": "Gen AI Assurance",
+  "userTypeProject": "devProject",
+  "_class": "com.cts.aila.model.Project"
+}]
