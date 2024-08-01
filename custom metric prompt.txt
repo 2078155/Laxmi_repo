@@ -1,0 +1,265 @@
+[Friday 5:38 PM] S, Bharanidharan (Cognizant)
+context_generation_prompt = """
+You are given a QUESTION and COMPETENCY.Your job is to extract the context for the given QUESTION from the COMPETENCY.
+Context which refers here is the information understand from the COMPETENCY to create the QUESTION.
+QUESTION - {Question}
+COMPETENCY - {competency}
+Follow the below steps while generating the CONTEXT:
+1.while writing the context, extract all the unchanged sentences from the COMPETENCY which supports to create the given 
+QUESTION.
+2.If it was referred multiple sentences of COMPETENCY each sentences should be able to support to create the given 
+question.Keep the sentences which supports to create the given QUESTION, Ignore the unsupported sentences from the context.
+3.From the generated context it should be able to frame the given QUESTION.If it is not able to frame the given QUESTION
+then please mention context as "NO CONTEXT FOUND FOR GIVEN QUESTION".
+4.While generating the context, Don't mention any words in double inverted commas ("").
+6.If you are not able to find any context from the COMPETENCY for the given QUESTION then please mention 
+context as "NO CONTEXT FOUND FOR GIVEN QUESTION".
+7.Don't generate any extra dictionaries, generate only for provided QUESTION.
+Provide the Final output only in proper JSON FORMAT only as mentioned below  and don 't give anything extra 
+supporting string as output. 
+question: <QUESTION> context: <Provide the context which supports to create the given 
+question. If you are able to find any context please mention "NO CONTEXT FOUND FOR GIVEN QUESTION"> reason: <Provide 
+your reasons, how it supports to create a given question. If the given context not able to frame the question then 
+provide the reason why you are not find any contest from JOBPOST> """
+ques_context_generation_prompt = """
+You are a context extractor.You are given a QUESTION and JOBPOST.The context refers to the specific information in the
+JOBPOST that directly supports to the creation of the given question.
+QUESTION - {Question}
+JOBPOST - {JobPost}
+Follow the below steps while generating the CONTEXT:
+1.The question was an interview question, it may or may not refer from the JOBPOST to create it.You have to extract
+all the supporting sentences as context.while extracting the context, you have to be absolute faith in the extracted
+sentences or entity which supports to creation of given question.
+2.If you Lack confidence in the extracted context, please ignore those context and please mention context as 
+"NO CONTEXT FOUND FOR GIVEN QUESTION"
+3.with the generated context it should be able frame the given question.You have to keep only supported sentences and 
+entity which must be the reference to create the given question.Please ignore the unsupported sentences from the context.
+If you are not able to find any supporting sentences and entity then please mention context as "NO CONTEXT FOUND FOR 
+GIVEN QUESTION"
+4. While generating the context, Don't mention any words in double inverted commas("").
+5. While generating the context, don't write the reason why you picked that as context. 
+6. If you are not able to find any context from the J08POST for the given QUESTION then please mention
+context as "NO CONTEXT FOUND FOR GIVEN QUESTION"
+7. Don't generate any extra dictionaries, generate only for provided QUESTION.
+Provide the Final output only in proper JSON FORMAT only as mentioned below  and don 't give anything extra 
+supporting string as output.
+question: <QUESTION>
+context: <The sentences or keywords which directly supports to create the given question. If it is not able to create the given question please mention as "NO CONTEXT FOUND FOR GIVEN QUESTION">
+reason: <for all the sentences in the context, give the reason how it directly supports to the creation of the given QUESTION. If it not able to find any context, then provide the reason why you are not able to find any context.>
+"""
+coherence_template = """Rate the coherence of the following QUESTION.
+Respond only as a number from 0 to 1 where 0 is the least coherent and 1 is the most coherent.
+QUESTION:{Question}
+When evaluating coherence, consider the following criteria:
+1. The QUESTION should be well structured and organized.
+2. The QUESTION should convey the information in a clear and logical order.
+Provide the Final output only in proper JSON FORMAT only as mentioned below  and don 't give anything extra 
+supporting string as output.
+score :<The score 0—1 based on the given criteria>
+reason: <Provide your reasons for scoring based on the listed criteria. If score is less then provide reason as why got 
+less score.> 
+"""
+direct_indirect_template = """The following question has been given to an Interviewer to ask  
+a candidate, it is required that question they ask should be in direct speech. Classify it  
+as direct or indirect  speech. {Question}.  
+Follow the guidelines while generating the output:  
+- Generate the results only for given question.  
+- Don' t create any extra dictionaries.
+Provide the Final output only in proper JSON FORMAT only as mentioned below  and don 't give anything extra 
+supporting string as output. 
+"speech":<Direct/ Indirect>
+"reason":<Why you are identifying as direct/Indirect question>
+            """
+fluency_template = """  
+You are a Fluency grader; providing the fluency score of the given QUESTION.  
+Respond only as a number from 0 to 1 where 0 is the least fluent and 1 is the  
+Excellent fluency.  
+Use the following criteria to pick an appropriate score:  
+0-0.2: Poor fluency. The QUESTION has many errors in grammar, spelling,  
+punctuation, word choice and sentence structure,  
+making it difficult to understand or sounding unnatural.  
+0.3—0.4: Fair fluency. The QUESTION has some errors that affect the clarity or  
+smoothness of the writing, but the main points are still comprehensible.  
+0.5—0.7: Good fluency. The QUESTION has few errors and is generally easy to read  
+and follow, but may have some minor issues.  
+0.8—1.0: Excellent fluency. The QUESTION is well written, with no noticeable  
+errors in grammar, spelling, punctuation.  
+word choice and sentence structure, making it easy to read and understand.  
+QUESTION: {question}  
+Provide the Final output only in proper JSON FORMAT only as mentioned below  and don 't give anything extra 
+supporting string as output.
+score: <The score 0—1 based on the given criteria.If score is less, then provide reason as why got less score.>  
+reason: <Provide your reasons for scoring based on the listed criteria.>
+"""
+
+JD_prompt_template = """<Job Requisition>
+            {content}
+            </Job Requisition>
+            <Instructions>
+            As you are a job post reviewer, based on the provided Job post (provided under <Job  
+            Requisition> Tag),
+            Your job is to categorize skills based on provided under <Sections> Tag.  
+            Guideline to follow while categorizing:  
+            - While categorizing Don't consider the educational qualification. (provided under  
+            <Job Requisition> Tag).
+            - From the job post don't consider Work Experience section  
+            Please Do not be Descriptive.  
+            <Sections>  
+            Tools/ Framework  
+            Software  
+            Knowledge/ qualification  
+            Responsibilities  
+            project Experience  
+            Certifications  
+            Soft skills  
+            </Sections>  
+            Present the output in the valid JSON format .  
+            </Instructions>  
+"""
+Duplicate_PROMPT = """From the given set of questions {questions} identify of there are any duplicate questions.  
+determine if they are duplicate based on the following rules: 1.Two questions can be fully or partially  
+duplicate. 2. fully means they are nearly rephrased versions of each other 3. partially means part of the  
+question is the same and the answer to one question would partially answer the other. 4. Multiple  
+questions can be duplicates of each other list each pair separately. 5. Return the responses as JSON  
+containing all duplicate whether they are full or partial duplicates, a reason and a score between 0-10  
+showing how similar they are based on the criteria given below.  
+Score criteria: Give a score 1-3 if questions are partial duplicates but very slightly similar. Give a  
+score of 4-6 if questions are partial duplicates but are asking similar questions about the same topic or  
+highly related topics. Give a score of 8-9 if questions are partial or fully asking very similar  
+questions about the exact same topics. Give a score of 10 if the questions are fully duplicate.
+Provide the Final output only in proper JSON FORMAT only as mentioned below  and don 't give anything extra 
+supporting string as output.
+{{ 
+"duplicates":[ 
+    {{ 
+        "questions": <List questions that are duplicates>,  
+        "type" : <full/partial>,
+        "reason": "", 
+        "similarity_score":<int 0-10>,
+    }} 
+] 
+}} 
+"""
+PL_competency = {
+    "Vision and Purpose": "Articulates a compelling and inspired vision and sense of purpose based on our values and "
+                          "to better serve our clients.",
+    "Strategic Agility": "Creates competitive strategies, specific plans, and establishes intelligent risk levels for "
+                         "achieving the organizational vision, mission and goals.",
+    "Priority Setting": "Identifies and prioritizes critical business issues and aligns the organization accordingly.",
+    "Developing Direct Reports and Others": "Committed to employee development and career growth.",
+    "Engaging and Empowering Others": "Fosters a work environment where people feel energized and empowered.",
+    "Championing Change": "Relentlessly pursues change that is best for the organization and its customers.",
+    "Business Acumen": "Knowledgeable of industry standards and how we can better compete in the marketplace and best serve our clients.",
+    "Effective Decision Making": "Able to make risk-based business decisions that create value.",
+    "Drive for Results": "Meets and/or exceeds business goals consistently.",
+    "Ethics and Trust": "Inspires trust, acts ethically, and consistently demonstrates our values.",
+    "Embraces Diversity": "Values and manages employee diversity and cross-functional collaboration to achieve results.",
+    "Leadership Fortitude": "Provides current, direct, complete, and actionable feedback to others."
+}
+IC_competency = {
+    "Effective Communication": "Understanding of effective communication concepts, tools and techniques; ability to "
+                               "effectively transmit, receive, and accurately interpret ideas, information, "
+                               "and needs through the application of appropriate communication behaviors.",
+    "Initiative": "Understanding of the value of self-motivation and initiative; ability and willingness to seek out "
+                  "work and the drive to accomplish goals.",
+    "Addressing Customer Needs": "Knowledge of and ability to meet customer needs by offering appropriate solutions "
+                                 "in an appropriate manner.",
+    "Accuracy & Attention to Detail": "Understanding of the necessity and value of accuracy and attention to detail; "
+                                      "ability to process information with high levels of accuracy.",
+    "Interpersonal Relationships": "Knowledge of the techniques and the ability to work with a variety of individuals "
+                                   "and groups in a constructive and collaborative manner.",
+    "Problem Solving": "Knowledge of approaches, tools, techniques for recognizing, anticipating, and resolving "
+                       "organizational, operational or process problems; ability to apply this knowledge "
+                       "appropriately to diverse situations.",
+    "Flexibility & Adaptability": "Knowledge of successful approaches, tools, and techniques for dealing with changes "
+                                  "and adapting to a changing environment;ability to adapt as needed. "
+}
+relevancy_check_prompt_1 = """
+Evaluate the relevance of the interview question {question} to the job post context {context}.
+Consider how well the QUESTION:
+1. Relates to the topic and scope of the job post.
+2. Aligns with the key points and themes presented in the job post
+3. Reflects an understanding of the job post and its key elements
+Score the relevance on a scale of 0.1 to 1, where,
+1. 0: QUESTION is No relevance to the CONTEXT or No CONTEXT Found for the QUESTION
+2. 0.1 - 0.3: Minimal relevance (QUESTION is barely related to the CONTEXT)
+3. 0.4 - 0.6: Some relevance (QUESTION is related to the CONTEXT, but not strongly)
+4. 0.7 - 0.9: High relevance (QUESTION is strongly related to the CONTEXT)
+5. 1.0: Exact match (QUESTION is perfectly aligned with the CONTEXT)
+Provide the Final output only in proper JSON FORMAT only as mentioned below  and don 't give anything extra 
+supporting string as output.
+score: <The score 0-1 based on the given criteria>
+reason: <Provide your reasons for scoring based on the listed criteria. If score is less than 1, then provide your reason 
+it got less score.>
+"""
+relevancy_check_prompt_2 = """
+Evaluate the relevance of the interview question {question} to the Competency context {context}.
+Consider how well the QUESTION relates to the behavioral competency requirements and behavioral skill mentioned.
+Score the relevance on a scale of 0.1 to 1 where,
+1. 0: QUESTION is No relevance to the CONTEXT
+2. 0.1 - 0.3: Minimal relevance (QUESTION is barely related to the CONTEXT)
+3. 0.4 - 0.6: Some relevance (QUESTION is related to the CONTEXT, but not strongly)
+4. 0.7 - 0.9: High relevance (QUESTION is strongly related to the CONTEXT)
+5. 1.0: Exact match (QUESTION is perfectly aligned with the CONTEXT)
+Provide the Final output only in proper JSON FORMAT only as mentioned below  and don 't give anything extra 
+supporting string as output.
+score: <The score 0-1 based on the given criteria>
+reason: <Provide your reasons for scoring based on the listed criteria. If score is less than 1, then provide your reason 
+it got less score.>
+"""
+JD_competency_Question_relevance = """
+You are a RELEVANCE grader, your job is to check the relevance between the given 
+QUESTION : {question} and given two sources of CONTEXT then provide the relevancy score and reason behind the score. 
+Respond only as a number from 0 to 1 where 0 is the least relevant and 1 is the most relevant. The QUESTION was an 
+interview question which was written by referring the competency_context and jd_context as input to check an Interviewee
+have the ability or skill to the corresponding JOB.
+A few additional scoring guidelines:
+- Long QUESTION should score equally well as short QUESTION.
+- While giving the RELEVANCE score it should refer both competency_context and jd_context. The score should split equally
+for the relevance check. Like 0.5 for jd_context and 0.5 for competency_context.
+- RELEVANCE score should increase as much the QUESTION able to frame from the given sources of CONTEXT.
+- QUESTION that is not COVERED any part of the given sources of CONTEXT should score a 0 and give the reason as "NO Relevance FOUND"
+- QUESTION has minimal level of RELEVANCE from the given sources of CONTEXT should score of 0.1 or 0.2 or 0.3.
+- QUESTION has partial level of RELEVANCE from the given sources of CONTEXT should get score of 0.4 or 0.5.
+- QUESTION has moderate level of RELEVANCE from the given sources of CONTEXT should get score of 0.6 or 0.7 or 0.8.
+- QUESTION has extensive level of RELEVANCE from the given sources of CONTEXT should get a score of 0.9
+- QUESTION has very extensive level of RELEVANCE from the given sources of CONTEXT to get a score of 1 
+- Higher score indicates more RELEVANCE. Based on this provide the Relevance score.
+sources of CONTEXT:
+competency_context- {competency_context}
+jd_context-{jd_context}
+Provide the Final output only in proper JSON FORMAT only as mentioned below  and don 't give anything extra 
+supporting string as output.
+score: <The score 0-1 based on the given criteria>
+reason: <Provide your reasons for scoring based on the listed criteria. If score is less than 1, then provide your reason 
+it got less score.>
+"""
+factuality_template = """
+You are a FACT CHECKER, you are given a sources of CONTEXT and a QUESTION : {question}.
+The QUESTION was an interview question, the QUESTION structured by the circumstances of competency_context to check an 
+Interviewee have the ability or skill to the corresponding JOB. It also includes TECHNICAL KEYWORDS from the jd_context. 
+Your task is to verify whether all the sentences in QUESTION are factually supported by the sources of CONTEXT or not. 
+A few additional scoring guidelines:
+- FACTUALITY Score should increase as the QUESTION factually supported by the sources of CONTEXT. 
+- FACTUALITY Score should increase as you can find EVIDENCE for more parts of the QUESTION.
+- While giving the FACTUALITY score it should refer both competency_context and jd_context. The score should split equally 
+for the FACTUALITY check. Like 0.5 for jd_context source and 0.5 for competency_context source. 
+- QUESTION for which you can't find any EVIDENCE should score a 0.
+Score criteria:
+- 0: when nothing is found
+- 0.2-0.4: low confidence i.e. some assumptions need to be made to justify it.
+- 0.5-0.8: with moderate to high confidence, decent information overlap between evidence and sentence.
+- 0.9-1.0: very high confidence.
+sources of CONTEXT:
+competency_context-{competency_context}
+jd_context-{jd_context}
+Provide the Final output only in proper JSON FORMAT only as mentioned below  and don 't give anything extra 
+supporting string as output.
+"score": <Provide a rating between 0 - 1 of type float, to show confidence that QUESTION was written by 
+correctly interpreting the CONTEXT>
+"reason": <Provide your reasons for scoring based on the listed criteria.>
+"evidence": <Choose the exact unchanged sentences in the jd_context and competency_context source that can prove the 
+QUESTION. If nothing matches, say NOTHING FOUND. Provide the evidence in single string not as a list.>
+"""
+ 
+ 
