@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"3bc86708625b42fc89059f5b0be40b79","collectionName":"evaluationRecord_quarantine","type":"collection"}
