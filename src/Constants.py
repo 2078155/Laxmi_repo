@@ -1,5 +1,0 @@
-APP_QUESTION_ANSWER_COLLECTION = "bot_question_answer"
-APP_PREDEFINED_QUESTION_COLLECTION = "predefined_questions"
-APP_DATA_CHUNK_COLLECTION = "data_chunks"
-APP_PREDEFINED_QUESTION_ANSWER_COLLECTION = "predefined_questions_answers"
-APP_TEST_QUESTIONS_COLLECTION='test_data'
