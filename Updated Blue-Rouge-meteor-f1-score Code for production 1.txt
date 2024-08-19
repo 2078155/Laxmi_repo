@@ -1,0 +1,328 @@
+# -----------------------------------------F1 Score-------------------------------------------------------------
+import collections
+
+
+def f1_score(answer: str, context: str):
+    def get_tokens(text):
+        return text.split()
+
+    context_str = ' '.join(context)
+    gold_tok = get_tokens(context_str)
+    pred_tok = get_tokens(answer)
+    common = collections.Counter(gold_tok) & collections.Counter(pred_tok)
+    num_same = sum(common.values())
+
+    if len(gold_tok) == 0 or len(pred_tok) == 0:
+        return int(gold_tok == pred_tok)
+
+    if num_same == 0:
+        score, reason = "NA", "tokens is empty"
+        return score, reason
+
+    precision = 1.0 * num_same / len(pred_tok)
+    recall = 1.0 * num_same / len(gold_tok)
+    f1 = (2 * precision * recall) / (precision + recall)
+
+    if f1 == 1.00:
+        reason = "Reason for Pass:- The F1 score is above the threshold value (0.5) because it indicates that the score'1', Perfect Match: The Answer matches the Context exactly. This means:Complete Overlap: Every token in the Answer is present in the Context, and no extra tokens are included in the Answer. Optimal Tokenization: Tokenization is perfectly aligned, ensuring accurate matches. Ideal Precision and Recall: Both precision and recall are perfect, indicating that the Answer is completely accurate relative to the Context."
+
+    elif f1 == 0.00:
+        reason = "Reason for Failure:- The  F1 score is below the threshold value (0.5) because it indicates that the score '0', No Token Overlap: The Answer and the Context have no matching tokens at all. This might be due to: Complete Mismatch: The Answer is entirely different from the Context. Tokenization Errors: Tokenization might be inconsistent or incorrect, resulting in no common tokens. Calculation Errors: Mistakes in computing precision and recall (e.g., division by zero) can result in an F1 Score of 0.0."
+
+    elif 0.01 < f1 < 0.49:
+        percentage_score = round(100 * f1, 2)
+        reason = f"Reason for Failure:- The  F1 score is below the threshold value (0.5) because it indicates that the score'{percentage_score}%', Minimal Token Overlap: There are a few matching tokens between the Answer and the Context, but the overlap is very limited. This could be due to: Partial Matches: Some tokens from the Answer match the Context, but many tokens are missing or incorrect. Tokenization Differences: Minor discrepancies in how tokens are split or normalized may lead to a low score. Low Precision or Recall: -Precision: The Answer contains many irrelevant or incorrect tokens compared to the Context. -Recall: The Answer misses many important tokens that are present in the Context."
+
+    elif 0.5 < f1 < 0.69:
+        percentage_score = round(100 * f1, 2)
+        reason = f"Reason for Pass:- The F1 score is above the threshold value (0.5) because it indicates that the score'{percentage_score}%', Moderate Token Overlap: There is a fair amount of overlap between the Answer and the Context, but it’s not perfect. This suggests: Significant Partial Matches: Many tokens in the Answer align with the Context, but some important tokens are still missing. Good Tokenization: Tokenization is mostly accurate, though there might be some small inconsistencies.Balanced Precision and Recall: Both precision and recall are moderate, indicating that while the Answer is somewhat accurate, there are still notable errors or omissions."
+
+    elif 0.7 < f1 < 0.99:
+        percentage_score = round(100 * f1, 2)
+        reason = f"Reason for Pass:- The F1 score is above the threshold value (0.5) because it indicates that the score'{percentage_score}%', High Token Overlap: The Answer largely matches the Context, but there are minor discrepancies. This score indicates: High Match Rate: Most tokens in the Answer are present in the Context and vice versa. Effective Tokenization: Tokenization is generally accurate, leading to high overlap. High Precision and Recall: Both precision and recall are high, though minor errors or omissions prevent a perfect score."
+
+    else:
+        return "NA", "unexpected score value"
+
+    return f1, reason
+
+# ----------------------------------------BLEU-------------------------------------------------------------
+
+from sacrebleu.metrics import BLEU
+
+
+def bleu(answer: str, context: list):
+    bleu_scorer = BLEU()
+
+    if not context or not isinstance(context, list) or len(context) == 0:
+        score, reason = "NA", "context is empty or not a list"
+        return score, reason
+
+    # Calculate BLEU score
+    score = bleu_scorer.sentence_score(hypothesis=answer, references=context).score
+
+    # Normalize the BLEU score from 0 to 1
+    normalized_score = score / 100.0
+
+    if normalized_score == 1.00:
+        reason = "Reason for Pass:- The BLEU score is above the threshold value (0.5) because it indicates that the BLEU score of 1 means your Answer perfectly matches the Context, which is usually a good sign. If it seems like a problem, it might be due to issues with the Context data or the Answer being too similar to the Context"
+
+    elif normalized_score == 0.00:
+        reason = "Reason for Failure:- The BLEU score is below the threshold value (0.5) because it indicates that the Answer doesn't match many words or phrases from the Context. A BLEU score of 0 means there are no matches at all, indicating a very different Answer from the Context"
+
+    elif 0.01 < normalized_score < 0.49:
+        percentage_score = round(100 * normalized_score, 2)
+        reason = f" Reason for Failure:- The BLEU score is below the threshold value (0.5) because it indicates that the BLEU score of '{percentage_score}%' means your Answer doesn't closely match the Context . This could be due to using different words or phrases, poor alignment in sentence structure, or the Answer being shorter than the Context data. BLEU penalizes translations that are too brief and rewards those that closely mirror the Contexts. To improve your score, align your Answer more closely with the Context words and phrases and maintain a similar length."
+
+    elif 0.5 < normalized_score < 0.79:
+        percentage_score = round(100 * normalized_score, 2)
+        reason = f"Reason for Pass:- The BLEU score is above the threshold value (0.5) because it indicates that the A BLEU score of '{percentage_score}%'  means your Answer is reasonably good but has some differences from the Context data in word choice, phrasing, or length. It indicates that while your Answer is fairly close, there are areas where it could be improved."
+
+    elif 0.8 < normalized_score < 0.99:
+        percentage_score = round(100 * normalized_score, 2)
+        reason = f" Reason for Pass:- The BLEU score is above the threshold value (0.5) because it indicates that the A BLEU score of '{percentage_score}%' is very good. It means your Answer closely matches the Context data in terms of words and phrases used. This high score indicates good precision and that your Answer is of appropriate length compared to the Contexts."
+
+    else:
+        return "NA", "unexpected score value"
+
+    return normalized_score, reason
+
+
+# ---------------------------------Rouge----------------------------------------------------------
+
+
+import re
+from rouge import Rouge
+
+
+class ROUGE:
+    def __init__(self):
+        self.rouge_scorer = Rouge()  # Initialize Rouge once
+
+    def tokenize(self, sentence):
+        return re.findall(r'\w+', sentence.lower())
+
+    def rouge_1(self, answer, context):
+        answer_str = answer
+        context_str = ' '.join(context)
+        ref_tokens = self.tokenize(context_str)
+        hyp_tokens = self.tokenize(answer_str)
+
+        if not ref_tokens:  # Check if ref_tokens is empty
+            score, reason = "NA", "tokens are empty"
+            return score, reason
+
+        scores = self.rouge_scorer.get_scores(hyps=[' '.join(hyp_tokens)], refs=[' '.join(ref_tokens)])
+        score = scores[0]["rouge-1"]["f"]
+
+        if score == 1.00:
+            reason = "Reason for Pass:- The ROUGE-1  score is above the threshold value (0.5) because it indicates that the Perfect Match: Every word in your Answer matches the Context. Complete Content Coverage: All key information in the Context is included in your Answer. Exact Structure: The order and structure of words are identical to the Context."
+
+        elif score == 0.00:
+            reason = "Reason for Failure:- The  ROUGE-1 score is below the threshold value (0.5) because it indicates that the ROUGE-1 Score of 0 means your Answer doesn’t match well with the Context summary. It suggests your Answer is missing No Word Match: Your Answer does not share any words with the Context summary. Missing Content: It lacks key information or phrases found in the Context.Different Structure: The wording and structure are completely different from the Context."
+
+        elif 0.01 < score < 0.49:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Failure:- The  ROUGE-1 score is below the threshold value (0.5) because it indicates that the ROUGE-1 Score of '{percentage_score}%' means your Answer doesn’t match well with the Context summary. It suggests your Answer is missing Low Match: There is a small number of matching words, but most of the content is different. Partial Content Coverage: Some key information might be present, but much is still missing. Structural Differences: The structure and order of words are not well aligned with the Context."
+
+        elif 0.5 < score < 0.79:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Pass:- The ROUGE-1  score is above the threshold value (0.5) because it indicates that the ROUGE-1 Score of '{percentage_score}%' means your Answer Moderate match well with the Context summary. It suggests your Answer is missing Moderate Match: Your Answer has a fair number of words in common with the Context. Content Coverage: Includes some key information but may still miss important details. Reasonable Structure: The overall structure or order of words is somewhat similar to the Context but not perfect."
+
+        elif 0.8 < score < 0.99:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Pass:- The ROUGE-1  score is above the threshold value (0.5) because it indicates that the ROUGE-1 Score of '{percentage_score}%'  High Match: A large portion of your Answer words match the Context. Good Content Coverage: Most key information from the Context is included in your Answer. Close Structure: The order and structure of words closely resemble those in the Context."
+
+        else:
+            return "NA", "unexpected score value"
+
+        return score, reason
+
+    def rouge_2(self, answer, context):
+        answer_str = answer
+        context_str = ' '.join(context)
+        ref_tokens = self.tokenize(context_str)
+        hyp_tokens = self.tokenize(answer_str)
+        if not ref_tokens:  # Check if ref_tokens is empty
+            score, reason = "NA", "tokens is empty"
+            return score, reason
+        score = self.rouge_scorer.get_scores(hyps=[' '.join(hyp_tokens)], refs=[' '.join(ref_tokens)])
+        score = score[0]["rouge-2"]["f"]
+
+        if score == 1.00:
+            reason = "Reason for Pass:- The ROUGE-2 score is above the threshold value (0.5) because it indicates that the ROUGE-2 Score of 1.0, Perfect Match: Every 2-word phrase in Answer matches exactly with those in the Context. Complete Overlap: All important 2-word sequences from the Context are included in Answer. Exact Phrasing: The phrasing and word sequences are identical to those in the Context."
+
+        elif score == 0.00:
+            reason = "Reason for Failure:- The ROUGE-2 score is below the threshold value (0.5) because it indicates that the ROUGE-2 Score of 0.0, No Matching Bigrams: Answer does not contain any 2-word phrases (bigrams) that match those in the Context summary. Complete Mismatch: There’s no overlap in 2-word sequences between Answer and the Context."
+
+        elif 0.01 < score < 0.49:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Failure:- The ROUGE-2 score is below the threshold value (0.5) because it indicates that the ROUGE-2 Score of '{percentage_score}%', Few Matching Bigrams: Only a small number of 2-word phrases in Answer match those in the Context. Limited Overlap: Answer includes some of the 2-word sequences from the Context, but many are missing. Different Phrasing: The phrasing in Answer doesn’t align well with the Context."
+
+        elif 0.5 < score < 0.79:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Pass:- The ROUGE-2 score is above the threshold value (0.5) because it indicates that the ROUGE-2 Score of '{percentage_score}%', Moderate Matching Bigrams: A fair number of 2-word phrases in Answer match the Context. Decent Overlap: Answer includes a reasonable amount of the key 2-word sequences found in the Context. Somewhat Similar Phrasing: The phrasing is somewhat similar but not perfectly aligned."
+
+        elif 0.8 < score < 0.99:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Pass:- The ROUGE-2 score is above the threshold value (0.5) because it indicates that the ROUGE-2 Score of '{percentage_score}%', High Matching Bigrams: Many 2-word phrases in Answer match those in the Context. Good Overlap: Most of the important 2-word sequences from the Context are included in Answer. Close Phrasing: The phrasing in Answer closely matches the Context."
+
+        else:
+            score, reason = "NA", "unexpected score value"
+
+        return score, reason
+
+    def rouge_l(self, answer, context):
+        answer_str = answer
+        context_str = ' '.join(context)
+        ref_tokens = self.tokenize(context_str)
+        hyp_tokens = self.tokenize(answer_str)
+        if not ref_tokens:  # Check if ref_tokens is empty
+            score, reason = "NA", "tokens is empty"
+            return score, reason
+
+        score = self.rouge_scorer.get_scores(hyps=[' '.join(hyp_tokens)], refs=[' '.join(ref_tokens)])
+        score = score[0]["rouge-l"]["f"]
+
+        if score == 1.00:
+            reason = "Reason for Pass:- The ROUGE-LCS score is above the threshold value (0.5) because it indicates that the ROUGE-LCS Score of 1, Perfect Match: Every sequence of words in Answer matches the Context exactly. Complete Content Coverage: All key sequences and information from the Context are included. Exact Structure: The order and structure of word sequences are identical to the Context."
+
+        elif score == 0.00:
+            reason = "Reason for Failure:- The ROUGE-LCS score is below the threshold value (0.5) because it indicates that the ROUGE-LCS Score of 0.0, No Common Sequences: There are no common sequences of words between Answer and the Context. Complete Mismatch: Answer does not reflect the word order or key content from the Context."
+
+        elif 0.01 < score < 0.49:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Failure:- The ROUGE-LCS score is below the threshold value (0.5) because it indicates that the ROUGE-LCS Score of '{percentage_score}%', Few Common Sequences: There are only a few short sequences of words in common. Partial Content Overlap: Some sequences from the Context are included, but important parts are missing. Different Structure: The structure of word sequences is quite different from the Context."
+
+        elif 0.5 < score < 0.79:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Pass:- The ROUGE-LCS score is above the threshold value (0.5) because it indicates that the ROUGE-LCS Score of '{percentage_score}%', Moderate Common Sequences: There is a reasonable amount of common word sequences. Decent Content Coverage: Answer includes a fair amount of key information from the Context. Similar Structure: The structure of word sequences is somewhat aligned with the Context but not perfect."
+
+        elif 0.8 < score < 0.99:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Pass:- The ROUGE-LCS score is above the threshold value (0.5) because it indicates that the ROUGE-LCS Score of '{percentage_score}%', High Common Sequences: Many long sequences of words are shared between Answer and the Context. Good Content Coverage: Most key information from the Context is included in Answer. Close Structure: The order and structure of word sequences closely match the Context."
+
+        else:
+            score, reason = "NA", "unexpected score value"
+
+        return score, reason
+# ---------------------------------------------meteor.py----------------------------------------------------
+
+import re
+from collections import Counter
+from nltk.corpus import wordnet as wn
+
+
+class METEOR:
+    def __init__(self):
+        pass
+
+    def tokenize(self, sentence):
+        return re.findall(r'\w+', sentence.lower())
+
+    def precision_recall(self, answer, context):
+        answer_str = ' '.join(answer)
+        context_str = ' '.join(context)
+        ref_tokens = self.tokenize(context_str)
+        hyp_tokens = self.tokenize(answer_str)
+        if not hyp_tokens:
+            return 0, 0  # Return zero for both precision and recall if hypothesis tokens are empty
+        if not ref_tokens:
+            return 0, 0  # Return zero for both precision and recall if reference tokens are empty
+        matches = sum((Counter(ref_tokens) & Counter(hyp_tokens)).values())
+        precision = matches / len(hyp_tokens)
+        recall = matches / len(ref_tokens)
+        return precision, recall
+
+    def fmean(self, precision, recall, alpha=0.9):
+        if precision + recall == 0:
+            return 0
+        return (precision * recall) / (alpha * precision + (1 - alpha) * recall)
+
+    def chunk_penalty(self, answer, context):
+        context_str = ' '.join(context)
+        answer_str = ' '.join(answer)
+        ref_tokens = self.tokenize(context_str)
+        hyp_tokens = self.tokenize(answer_str)
+        if not ref_tokens or not hyp_tokens:
+            return 0  # Return zero if either reference or hypothesis tokens are empty
+        matches = Counter(ref_tokens) & Counter(hyp_tokens)
+        match_tokens = list(matches.elements())
+        num_chunks = 0
+        in_chunk = False
+        for token in hyp_tokens:
+            if token in match_tokens:
+                if not in_chunk:
+                    num_chunks += 1
+                    in_chunk = True
+            else:
+                in_chunk = False
+
+        if len(match_tokens) == 0:
+            return 0
+        return 0.5 * (num_chunks / len(match_tokens))
+
+    def synonym_matches(self, answer, context):
+        answer_str = ' '.join(answer)
+        context_str = ' '.join(context)
+        ref_tokens = self.tokenize(context_str)
+        hyp_tokens = self.tokenize(answer_str)
+
+        if not ref_tokens:
+            score, reason = "NA", "ref_tokens are empty"
+            return score, reason
+
+        match_count = 0
+        for token in hyp_tokens:
+            synonyms = set()
+            for synset in wn.synsets(token):
+                for lemma in synset.lemmas():
+                    synonyms.add(lemma.name())
+            if synonyms & set(ref_tokens):
+                match_count += 1
+
+        return match_count
+
+    def meteor_score(self, answer, context):
+        answer_tokens = self.tokenize(' '.join(answer))
+        if not answer_tokens:  # Return zero if answer tokens are empty
+            score, reason = "NA", "answer_tokens are empty"
+            return score, reason
+
+        precision, recall = self.precision_recall(answer, context)
+        f_mean = self.fmean(precision, recall)
+        penalty = self.chunk_penalty(answer, context)
+        synonym_match_count = self.synonym_matches(answer, context)
+        synonym_weight = 0.5
+
+        # Calculate the score
+        score = f_mean * (1 - penalty) + synonym_weight * (synonym_match_count / len(answer_tokens))
+
+        if score == 1.0:
+            reason = "Reason for Pass:- The Meteor score is above the threshold value (0.5) because it indicates that the score 1.0 Perfect Matches: The Answer had exact matches, correct stemming, and synonym alignment with the Context sentences. Perfect Alignment: The structure and content perfectly matched the Context sentences. Complete Content Accuracy: The Answer fully represented the meaning and details of the Context sentences."
+
+        elif score == 0.00:
+            reason = "Reason for Failure:- The  Meteor score is below the threshold value (0.5) because it indicates that the score 0.0 No Matches: The Answer had no exact matches, stemmed matches, or synonyms with the Context sentences.Significant Discrepancies: There were major differences in meaning or content, and the text did not align with the Context in any way. Severe Errors: The Answer might contain errors that make it unrecognizable compared to the Context (e.g., irrelevant content or severe grammatical mistakes)."
+
+        elif 0.01 < score < 0.29:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Failure:- The  Meteor score is below the threshold value (0.5) because it indicates that the score '{percentage_score}%', Minimal Exact Matches: There were some exact matches but not enough to significantly impact the score. Basic Stemmed Matches: A few stemmed words matched, but overall alignment was weak. Limited Synonym Matching: Few synonyms or paraphrases were correctly identified, leading to a low score."
+
+        elif 0.3 < score < 0.49:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Failure:- The  Meteor score is below the threshold value (0.5) because it indicates that the score '{percentage_score}%', Moderate Matches: There were more exact and stemmed matches, showing some alignment with the Context. Basic Structure Alignment: The structure of the Answer was somewhat similar to the Context, but with noticeable differences. Partial Synonym Recognition: Some synonyms or paraphrases were correctly matched, but not comprehensively."
+
+        elif 0.5 < score < 0.69:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Pass:- The Meteor score is above the threshold value (0.5) because it indicates that the score '{percentage_score}%', Good Matches: There were many exact, stemmed, and synonym matches. Good Alignment: The structure and content of the Answer were mostly aligned with the Context. Effective Synonym Matching: Many synonyms or paraphrases were identified and aligned with the Context."
+
+        elif 0.7 < score < 0.99:
+            percentage_score = round(100 * score, 2)
+            reason = f"Reason for Pass:- The Meteor score is above the threshold value (0.5) because it indicates that the score '{percentage_score}%', Nearly Perfect Matches: Most exact and stemmed matches were present, with very few errors. Excellent Structure and Content Alignment: The Answer closely mirrored the Context in both structure and content. High Synonym and Paraphrase Accuracy: Synonyms and paraphrases were effectively handled, almost matching the Context perfectly."
+
+        else:
+            score, reason = "NA", "unexpected score value"
+
+        return score, reason
+
+# # --------------------------------------end-----------------------------------------------------------
